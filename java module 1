@@ -1,0 +1,115 @@
+assignment : MODULE 1
+
+(1) : Write a simple "Hello World" program in two different programming languages of your choice. Compare the structure and syntax. 
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+==>Explain in your own words what a program is and how it functions.  What is Programming
+
+
+You write code (Java, Python, JavaScript, etc.)
+
+A compiler or interpreter translates it into machine language (0s and 1s)
+
+CPU executes those instructions
+
+You see the result
+
+
+A program is a set of instructions written in a programming language that tells a computer what to do.
+
+==>What are the key steps involved in the programming process?  Types of Programming Languages
+
+The programming process includes understanding the problem, planning the solution, writing the code, testing it, and maintaining it.
+
+Programming languages are classified into low-level and high-level languages, and further into procedural, object-oriented, scripting, and functional languages
+
+==>  Research and create a diagram of how data is transmitted from a client to a server over the internet. 
+
+
+   Your Computer 
+    Browser / App
+          |
+       (1) URL typed
+          |
+          V
++-----------------+
+| DNS Resolver    |
+| (Translates      |
+|  domain to IP)   |
++-----------------+
+          |
+       (2) DNS response
+          |
+          V
+   Your Device 
+(Applies IP + Port)
+          |
+       (3) TCP Handshake
+ SYN → SYN/ACK → ACK
+          |
+       (4) HTTP Request
+ GET / POST / etc.
+          |
+          V
+---------------------------
+         INTERNET
+(Routers, switches, fibers)
+---------------------------
+          |
+          V
+  Server Computer 
+  (Receives HTTP)
+          |
+       (5) Server logic
+  Processes & prepares
+   the response data
+          |
+      (6) HTTP Response
+          |
+          V
+         INTERNET
+          |
+          V
+    Your Computer 
+   (Receives data)
+          |
+    (7) Browser displays
+
+
+==>  Describe the roles of the client and server in web communication.  Network Layers on Client and Server
+
+
+Client (Frontend Side)
+
+A client is the device or application that requests data.
+
+Server (Backend Side)
+
+A server is a system that receives requests and sends responses.
+
+
+Network Layers on Client and Server
+
+Communication follows a layered model called the OSI Model.
+
+** OSI Model (7 Layers)
+
+Physical
+
+Data Link
+
+Network
+
+Transport
+
+Session
+
+Presentation
+
+Application
+
