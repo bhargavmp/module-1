@@ -1,0 +1,237 @@
+Introduction to C Programming
+
+
+THEORY EXERCISE
+
+C programming language was developed in 1972 by Dennis Ritchie at Bell Laboratories. It was created to develop the UNIX operating system. Before C, languages like B and BCPL were used, but they lacked efficiency and flexibility. C combined low-level (hardware-level) and high-level features, making it powerful and fast.
+
+Over time, C became one of the most widely used programming languages. It influenced many modern languages like C++, Java, and Python.
+
+Importance of C:
+
+It is fast and efficient
+Provides low-level memory access
+Used to build system software
+Portable across platforms
+
+Why C is still used today:
+
+Used in operating systems (Linux, Windows parts)
+Embedded systems and microcontrollers
+High-performance applications
+Strong foundation for learning programming
+LAB EXERCISE
+
+Three real-world applications of C:
+
+Embedded Systems
+C is widely used in microcontrollers, IoT devices, and hardware programming.
+Operating Systems
+Operating systems like UNIX and Linux are written in C.
+Game Development
+C is used in game engines for performance-critical parts.
+2. Setting Up Environment
+THEORY EXERCISE
+
+Steps to install C compiler (GCC) and IDE:
+
+Download GCC compiler (MinGW for Windows)
+Install and set environment variables (Path)
+Download IDE (VS Code / CodeBlocks / DevC++)
+Install C/C++ extension in IDE
+Configure compiler path in IDE
+Test installation with a simple program
+LAB EXERCISE
+
+First C Program:
+
+#include<stdio.h>
+
+int main() {
+    printf("Hello, World!");
+    return 0;
+}
+3. Basic Structure of a C Program
+THEORY EXERCISE
+
+Basic structure includes:
+
+Header files
+Example: #include<stdio.h>
+Main function
+Entry point of program
+Comments
+// single line
+/* multi-line */
+Variables and Data Types
+int, float, char
+
+Example:
+
+#include<stdio.h>
+
+// main function
+int main() {
+    int a = 10;
+    float b = 5.5;
+    char c = 'A';
+
+    printf("%d %f %c", a, b, c);
+    return 0;
+}
+LAB EXERCISE
+#include<stdio.h>
+
+int main() {
+    int a = 10;
+    float b = 3.14;
+    char c = 'X';
+
+    printf("Integer: %d\n", a);
+    printf("Float: %f\n", b);
+    printf("Character: %c\n", c);
+
+    return 0;
+}
+4. Operators in C
+THEORY EXERCISE
+
+Types of operators:
+
+Arithmetic: +, -, *, /, %
+Relational: ==, !=, >, <, >=, <=
+Logical: &&, ||, !
+Assignment: =, +=, -=
+Increment/Decrement: ++, --
+Bitwise: &, |, ^, ~
+Conditional: (condition ? true : false)
+LAB EXERCISE
+#include<stdio.h>
+
+int main() {
+    int a, b;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    printf("Addition: %d\n", a + b);
+    printf("Subtraction: %d\n", a - b);
+    printf("Multiplication: %d\n", a * b);
+    printf("Division: %d\n", a / b);
+
+    printf("Equal: %d\n", a == b);
+    printf("Greater: %d\n", a > b);
+
+    printf("Logical AND: %d\n", (a > 0 && b > 0));
+
+    return 0;
+}
+5. Control Flow Statements
+THEORY EXERCISE
+
+Decision-making statements:
+
+if statement
+if-else statement
+nested if-else
+switch statement
+
+Example:
+
+if(a > b) {
+    printf("A is greater");
+} else {
+    printf("B is greater");
+}
+LAB EXERCISE
+#include<stdio.h>
+
+int main() {
+    int num, month;
+
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    if(num % 2 == 0)
+        printf("Even\n");
+    else
+        printf("Odd\n");
+
+    printf("Enter month number (1-12): ");
+    scanf("%d", &month);
+
+    switch(month) {
+        case 1: printf("January"); break;
+        case 2: printf("February"); break;
+        case 3: printf("March"); break;
+        default: printf("Invalid month");
+    }
+
+    return 0;
+}
+6. Looping in C
+THEORY EXERCISE
+
+Types of loops:
+
+for loop → used when number of iterations is known
+while loop → condition checked before execution
+do-while loop → runs at least once
+LAB EXERCISE
+#include<stdio.h>
+
+int main() {
+
+    // for loop
+    for(int i = 1; i <= 10; i++) {
+        printf("%d ", i);
+    }
+
+    printf("\n");
+
+    // while loop
+    int i = 1;
+    while(i <= 10) {
+        printf("%d ", i);
+        i++;
+    }
+
+    printf("\n");
+
+    // do-while loop
+    i = 1;
+    do {
+        printf("%d ", i);
+        i++;
+    } while(i <= 10);
+
+    return 0;
+}
+7. Loop Control Statements
+THEORY EXERCISE
+break → exits loop
+continue → skips current iteration
+goto → jumps to label (not recommended)
+LAB EXERCISE
+#include<stdio.h>
+
+int main() {
+
+    // break example
+    for(int i = 1; i <= 10; i++) {
+        if(i == 5)
+            break;
+        printf("%d ", i);
+    }
+
+    printf("\n");
+
+    // continue example
+    for(int i = 1; i <= 10; i++) {
+        if(i == 3)
+            continue;
+        printf("%d ", i);
+    }
+
+    return 0;
+}
