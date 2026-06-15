@@ -1,0 +1,1027 @@
+session 1 : 
+
+1. Installation of MySQL Workbench and Viewing Default Databases
+
+MySQL Workbench was installed on the computer and connected to the local MySQL server using the root user account. After connecting successfully, the Schemas panel displayed the default databases provided by MySQL. These databases include information_schema, mysql, performance_schema, and sys. A screenshot of these default databases can be taken and attached as proof of successful installation and connection.
+
+2. Creating the InstaClone Database and Users Table
+
+A new database named InstaClone was created in MySQL Workbench. Inside this database, a table named Users was created to store user information. The table contains the following columns:
+
+* user_id (INT, Primary Key)
+* username (VARCHAR)
+* email (VARCHAR)
+* followers_count (INT)
+
+SQL Query:
+
+CREATE DATABASE InstaClone;
+
+USE InstaClone;
+
+CREATE TABLE Users (
+user_id INT PRIMARY KEY,
+username VARCHAR(50),
+email VARCHAR(100),
+followers_count INT
+);
+
+3. Inserting Sample User Data
+
+Three sample Instagram-style users were inserted into the Users table with realistic usernames and follower counts.
+
+SQL Query:
+
+INSERT INTO Users (user_id, username, email, followers_count)
+VALUES
+(1, 'fitness_vishal', '[vishal@gmail.com](mailto:vishal@gmail.com)', 2500),
+(2, 'travel_diaries', '[travel@gmail.com](mailto:travel@gmail.com)', 12500),
+(3, 'foodie_world', '[foodie@gmail.com](mailto:foodie@gmail.com)', 8900);
+
+The inserted records can be viewed using:
+
+SELECT * FROM Users;
+
+4. Creating the Posts Table and Establishing a Relationship
+
+Another table named Posts was created in the InstaClone database. This table stores information about user posts and contains the following columns:
+
+* post_id (INT, Primary Key)
+* user_id (INT)
+* caption (VARCHAR)
+* post_date (DATE)
+
+A foreign key relationship was established between Posts.user_id and Users.user_id. This relationship ensures that every post belongs to a valid user.
+
+SQL Query:
+
+CREATE TABLE Posts (
+post_id INT PRIMARY KEY,
+user_id INT,
+caption VARCHAR(255),
+post_date DATE,
+FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+
+Sample data was inserted into the Posts table:
+
+INSERT INTO Posts (post_id, user_id, caption, post_date)
+VALUES
+(101, 1, 'Morning workout completed!', '2026-06-10'),
+(102, 2, 'Exploring the mountains today!', '2026-06-11'),
+(103, 3, 'Best pizza in town!', '2026-06-12');
+
+5. Comparison of MySQL, PostgreSQL, Oracle, and SQLite
+
+MySQL is one of the most popular relational database management systems. It is widely used in web applications, e-commerce websites, and content management systems because it is easy to learn, fast, and reliable.
+
+PostgreSQL is an advanced open-source database system known for its powerful features and support for complex queries. It is commonly used in enterprise applications, analytics platforms, and systems requiring high data integrity.
+
+Oracle Database is an enterprise-level database management system used by large organizations such as banks, healthcare institutions, and government agencies. It offers excellent security, scalability, and performance for mission-critical applications.
+
+SQLite is a lightweight, serverless database engine that stores data in a single file. It is commonly used in mobile applications, desktop software, embedded systems, and Internet of Things (IoT) devices because it requires minimal setup and maintenance.
+
+Conclusion
+
+This assignment demonstrated the installation and use of MySQL Workbench, creation of databases and tables, insertion of data, establishment of relationships using foreign keys, and comparison of popular database management systems. The InstaClone database successfully models a simple social media application with users and posts connected through a relational database structure.
+
+
+**********
+session 2 : 
+
+MySQL DDL Commands Assignment
+
+1. Create a Table Named 'restaurants'
+
+The following SQL statement creates a table called restaurants with columns id, name, location, and rating. The id column is the primary key and is set to auto-increment.
+
+```sql
+CREATE TABLE restaurants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    location VARCHAR(100),
+    rating DECIMAL(2,1)
+);
+```
+
+2. Add a New Column 'average_cost'
+
+The ALTER TABLE command is used to add a new column named average_cost with the INT data type.
+
+```sql
+ALTER TABLE restaurants
+ADD average_cost INT;
+```
+
+3. Drop the 'restaurants' Table
+
+The following SQL statement permanently deletes the restaurants table from the database.
+
+```sql
+DROP TABLE restaurants;
+```
+
+Note: Ensure that the table is no longer needed before executing this command, as all data stored in the table will be lost.
+
+4. Create a Table Named 'playlists'
+
+The following SQL statement creates a table called playlists for a music application such as Spotify.
+
+```sql
+CREATE TABLE playlists (
+    playlist_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(50),
+    created_by VARCHAR(50),
+    created_at DATE
+);
+```
+
+Conclusion
+
+This exercise demonstrates the use of Data Definition Language (DDL) commands in MySQL, including CREATE TABLE, ALTER TABLE, and DROP TABLE. These commands are essential for designing and managing database structures.
+
+```
+```
+
+
+***********
+session 3 : 
+
+MySQL DML Operations Assignment
+
+1. Create the Restaurants Table and Insert Sample Data
+
+```sql
+CREATE TABLE Restaurants (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    cuisine VARCHAR(50),
+    rating DECIMAL(2,1),
+    city VARCHAR(50)
+);
+
+INSERT INTO Restaurants (name, cuisine, rating, city)
+VALUES
+('Spice Villa', 'Indian', 4.5, 'Ahmedabad'),
+('Dragon Bowl', 'Chinese', 4.2, 'Ahmedabad'),
+('Pizza Palace', 'Italian', 3.8, 'Surat'),
+('Taco Fiesta', 'Mexican', 3.2, 'Vadodara'),
+('Sushi World', 'Japanese', 4.8, 'Ahmedabad');
+```
+
+2. Update the Rating of 'Spice Villa'
+
+The following query updates the rating of the restaurant named 'Spice Villa' to 4.7.
+
+```sql
+UPDATE Restaurants
+SET rating = 4.7
+WHERE name = 'Spice Villa';
+```
+
+3. Delete Restaurants with Rating Less Than 3.5
+
+The following query removes all restaurants whose rating is below 3.5.
+
+```sql
+DELETE FROM Restaurants
+WHERE rating < 3.5;
+```
+
+4. Fetch the Top 2 Restaurants in Ahmedabad with Rating Above 4.0
+
+The following query retrieves the top 2 restaurants located in Ahmedabad having a rating greater than 4.0.
+
+```sql
+SELECT *
+FROM Restaurants
+WHERE city = 'Ahmedabad'
+AND rating > 4.0
+LIMIT 2;
+```
+
+Expected Result After Update and Delete:
+
+| id | name        | cuisine  | rating | city      |
+| -- | ----------- | -------- | ------ | --------- |
+| 1  | Spice Villa | Indian   | 4.7    | Ahmedabad |
+| 2  | Dragon Bowl | Chinese  | 4.2    | Ahmedabad |
+| 5  | Sushi World | Japanese | 4.8    | Ahmedabad |
+
+Conclusion
+
+This exercise demonstrates important SQL Data Manipulation Language (DML) operations including INSERT, UPDATE, DELETE, and SELECT with WHERE and LIMIT clauses. These commands are commonly used to manage and retrieve data efficiently from database tables.
+
+
+session 4 : 
+
+
+MySQL Playlist Database Assignment
+
+1. Create the Playlist Table and Insert Sample Records
+
+```sql
+CREATE TABLE Playlist (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    song_name VARCHAR(100),
+    artist VARCHAR(100),
+    genre VARCHAR(50),
+    play_count INT
+);
+
+INSERT INTO Playlist (song_name, artist, genre, play_count)
+VALUES
+('Blinding Lights', 'The Weeknd', 'Pop', 250),
+('Shape of You', 'Ed Sheeran', 'Pop', 180),
+('Gods Plan', 'Drake', 'Hip-Hop', 150),
+('Lose Yourself', 'Eminem', 'Hip-Hop', 220),
+('Believer', 'Imagine Dragons', 'Rock', 120);
+```
+
+2. Display Only song_name and artist Using an Alias
+
+The following query displays the song name and artist, with the artist column shown as "Singer".
+
+```sql
+SELECT song_name,
+       artist AS Singer
+FROM Playlist;
+```
+
+3. Find Pop Songs with play_count Greater Than 100
+
+The following query retrieves all Pop songs with a play count greater than 100 and sorts them in descending order of play count.
+
+```sql
+SELECT *
+FROM Playlist
+WHERE genre = 'Pop'
+  AND play_count > 100
+ORDER BY play_count DESC;
+```
+
+4. Count the Number of Hip-Hop Songs
+
+The following query counts how many songs belong to the Hip-Hop genre.
+
+```sql
+SELECT COUNT(*) AS HipHop_Songs
+FROM Playlist
+WHERE genre = 'Hip-Hop';
+```
+
+5. Show Total Plays for Each Genre
+
+The following query calculates the total play count for each genre using the SUM function and GROUP BY clause.
+
+```sql
+SELECT genre,
+       SUM(play_count) AS Total_Plays
+FROM Playlist
+GROUP BY genre;
+```
+
+Expected Output for Total Plays by Genre
+
+| Genre   | Total_Plays |
+| ------- | ----------- |
+| Pop     | 430         |
+| Hip-Hop | 370         |
+| Rock    | 120         |
+
+Conclusion
+
+This exercise demonstrates the use of SQL commands for creating tables, inserting records, selecting specific columns with aliases, filtering data using WHERE conditions, sorting records with ORDER BY, counting records using COUNT(), and aggregating data with SUM() and GROUP BY. These are essential SQL operations used in real-world database applications.
+
+session 5 :
+
+
+
+MySQL JOIN Operations Assignment
+
+1. Create Influencers and Posts Tables with Sample Data
+
+```sql
+-- Create Influencers Table
+CREATE TABLE influencers (
+    influencer_id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+-- Create Posts Table
+CREATE TABLE posts (
+    post_id INT PRIMARY KEY,
+    influencer_id INT,
+    caption VARCHAR(255),
+    FOREIGN KEY (influencer_id)
+    REFERENCES influencers(influencer_id)
+);
+
+-- Insert Influencers
+INSERT INTO influencers (influencer_id, name)
+VALUES
+(1, 'Virat Vlogs'),
+(2, 'Fitness Queen'),
+(3, 'Travel Guru');
+
+-- Insert Posts
+INSERT INTO posts (post_id, influencer_id, caption)
+VALUES
+(101, 1, 'Morning workout routine'),
+(102, 1, 'Healthy lifestyle tips'),
+(103, 2, 'Best gym exercises'),
+(104, 2, 'Diet plan for beginners'),
+(105, 3, 'Exploring Goa beaches'),
+(106, 3, 'Top travel destinations');
+```
+
+2. INNER JOIN Query
+
+Display each post caption along with the influencer's name.
+
+```sql
+SELECT
+    p.caption,
+    i.name
+FROM posts p
+INNER JOIN influencers i
+ON p.influencer_id = i.influencer_id;
+```
+
+Expected Output:
+
+| caption                 | name          |
+| ----------------------- | ------------- |
+| Morning workout routine | Virat Vlogs   |
+| Healthy lifestyle tips  | Virat Vlogs   |
+| Best gym exercises      | Fitness Queen |
+| Diet plan for beginners | Fitness Queen |
+| Exploring Goa beaches   | Travel Guru   |
+| Top travel destinations | Travel Guru   |
+
+3. LEFT JOIN Query
+
+Display all influencers and their posts, including influencers without any posts. If no post exists, show 'No Posts'.
+
+```sql
+SELECT
+    i.name,
+    COALESCE(p.caption, 'No Posts') AS caption
+FROM influencers i
+LEFT JOIN posts p
+ON i.influencer_id = p.influencer_id;
+```
+
+If an influencer has no posts, the result will display:
+
+| name           | caption  |
+| -------------- | -------- |
+| New Influencer | No Posts |
+
+4. RIGHT JOIN Query
+
+Display all posts and the corresponding influencer name. If a post does not have a matching influencer, show NULL for the influencer name.
+
+```sql
+SELECT
+    p.post_id,
+    p.caption,
+    i.name
+FROM influencers i
+RIGHT JOIN posts p
+ON i.influencer_id = p.influencer_id;
+```
+
+Expected Output:
+
+| post_id | caption                 | name          |
+| ------- | ----------------------- | ------------- |
+| 101     | Morning workout routine | Virat Vlogs   |
+| 102     | Healthy lifestyle tips  | Virat Vlogs   |
+| 103     | Best gym exercises      | Fitness Queen |
+| 104     | Diet plan for beginners | Fitness Queen |
+| 105     | Exploring Goa beaches   | Travel Guru   |
+| 106     | Top travel destinations | Travel Guru   |
+
+Conclusion
+
+This assignment demonstrates how SQL JOIN operations are used to combine data from multiple related tables. INNER JOIN returns matching records from both tables, LEFT JOIN returns all records from the left table and matching records from the right table, while RIGHT JOIN returns all records from the right table and matching records from the left table.
+
+session 6 :
+
+MySQL GROUP BY, HAVING, and Subqueries Assignment
+
+1. Display Total Number of Orders Placed by Each User
+
+The following query uses GROUP BY and COUNT() to display the total number of orders placed by each user.
+
+```sql
+SELECT
+    user_id,
+    COUNT(*) AS order_count
+FROM orders
+GROUP BY user_id;
+```
+
+Example Output:
+
+| user_id | order_count |
+| ------- | ----------- |
+| 101     | 5           |
+| 102     | 3           |
+| 103     | 7           |
+
+2. Display Restaurants with Average Rating Above 4.0
+
+The following query uses GROUP BY and HAVING to show restaurants whose average rating is greater than 4.0.
+
+```sql
+SELECT
+    restaurant_name,
+    AVG(rating) AS average_rating
+FROM restaurants
+GROUP BY restaurant_name
+HAVING AVG(rating) > 4.0;
+```
+
+Example Output:
+
+| restaurant_name | average_rating |
+| --------------- | -------------- |
+| Spice Villa     | 4.5            |
+| Food Palace     | 4.3            |
+
+3. Find Users Who Made a Single Payment Above ₹2000
+
+The following query uses a subquery to find user IDs that have made at least one payment greater than ₹2000.
+
+```sql
+SELECT DISTINCT user_id
+FROM payments
+WHERE user_id IN (
+    SELECT user_id
+    FROM payments
+    WHERE amount > 2000
+);
+```
+
+Alternative Query:
+
+```sql
+SELECT DISTINCT user_id
+FROM payments
+WHERE amount > 2000;
+```
+
+Example Output:
+
+| user_id |
+| ------- |
+| 201     |
+| 204     |
+| 209     |
+
+4. Display Movies with Higher Average Rating Than the Overall Average Rating
+
+The following nested subquery calculates the overall average movie rating and then displays movies whose rating is higher than that average.
+
+```sql
+SELECT movie_name,
+       rating
+FROM movies
+WHERE rating > (
+    SELECT AVG(rating)
+    FROM movies
+);
+```
+
+If the movies table contains multiple ratings per movie, use:
+
+```sql
+SELECT movie_name,
+       AVG(rating) AS avg_rating
+FROM movies
+GROUP BY movie_name
+HAVING AVG(rating) > (
+    SELECT AVG(rating)
+    FROM movies
+);
+```
+
+Example Output:
+
+| movie_name      | avg_rating |
+| --------------- | ---------- |
+| Inception       | 4.8        |
+| Interstellar    | 4.7        |
+| The Dark Knight | 4.9        |
+
+Conclusion
+
+This assignment demonstrates the use of GROUP BY, HAVING, aggregate functions such as COUNT() and AVG(), and subqueries in SQL. These techniques are widely used for data analysis, reporting, and filtering records based on aggregated values in real-world database applications.
+
+
+session 7 :
+
+
+MySQL Constraints and Views Assignment
+
+1. Create Restaurant Table
+
+The following query creates a Restaurant table with id as the PRIMARY KEY and applies NOT NULL constraints to the name and location columns.
+
+```sql
+CREATE TABLE Restaurant (
+    id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    cuisine VARCHAR(50)
+);
+```
+
+2. Create FoodOrder Table
+
+The following query creates a FoodOrder table with order_id as the PRIMARY KEY and restaurant_id as a FOREIGN KEY referencing Restaurant(id).
+
+```sql
+CREATE TABLE FoodOrder (
+    order_id INT PRIMARY KEY,
+    restaurant_id INT,
+    user_id INT,
+    order_total DECIMAL(10,2),
+
+    FOREIGN KEY (restaurant_id)
+    REFERENCES Restaurant(id)
+);
+```
+
+3. Create SpotifyUser Table and Insert 6 Records
+
+The following query creates a SpotifyUser table where username is UNIQUE and email is NOT NULL.
+
+```sql
+CREATE TABLE SpotifyUser (
+    user_id INT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    email VARCHAR(100) NOT NULL,
+    subscription_type VARCHAR(20)
+);
+```
+
+Insert sample records:
+
+```sql
+INSERT INTO SpotifyUser
+(user_id, username, email, subscription_type)
+VALUES
+(1, 'musiclover01', 'musiclover01@gmail.com', 'Premium'),
+(2, 'rockstar22', 'rockstar22@gmail.com', 'Free'),
+(3, 'beatmaster', 'beatmaster@gmail.com', 'Premium'),
+(4, 'melodyqueen', 'melodyqueen@gmail.com', 'Family'),
+(5, 'djvibes', 'djvibes@gmail.com', 'Student'),
+(6, 'rhythmkid', 'rhythmkid@gmail.com', 'Premium');
+```
+
+4. Create TopSpendersView
+
+To display usernames and order totals greater than 1000, we join SpotifyUser and FoodOrder and create a view.
+
+```sql
+CREATE VIEW TopSpendersView AS
+SELECT
+    s.username,
+    f.order_total
+FROM SpotifyUser s
+JOIN FoodOrder f
+ON s.user_id = f.user_id
+WHERE f.order_total > 1000;
+```
+
+5. List Users Who Spent More Than 2000
+
+The following query uses only the TopSpendersView as required.
+
+```sql
+SELECT *
+FROM TopSpendersView
+WHERE order_total > 2000
+ORDER BY order_total DESC;
+```
+
+Example Output:
+
+| username     | order_total |
+| ------------ | ----------- |
+| beatmaster   | 4500.00     |
+| melodyqueen  | 3200.00     |
+| musiclover01 | 2500.00     |
+
+Conclusion
+
+This assignment demonstrates the use of SQL constraints such as PRIMARY KEY, FOREIGN KEY, NOT NULL, and UNIQUE. It also shows how to create and use SQL Views to simplify data access and perform queries on filtered datasets.
+
+
+session 8 :
+
+PL/SQL Programming Assignment
+
+1. Declare Variables and Print Values
+
+The following PL/SQL block declares two variables, assigns values, and prints them using DBMS_OUTPUT.PUT_LINE.
+
+```sql
+DECLARE
+    v_name VARCHAR2(50) := 'Bhargav';
+    v_age NUMBER := 24;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Name: ' || v_name);
+    DBMS_OUTPUT.PUT_LINE('Age: ' || v_age);
+END;
+/
+```
+
+Output:
+
+```
+Name: Bhargav
+Age: 24
+```
+
+2. IF Statement Example
+
+The following PL/SQL block checks whether an order amount is greater than 500.
+
+```sql
+DECLARE
+    v_order_amount NUMBER := 750;
+BEGIN
+    IF v_order_amount > 500 THEN
+        DBMS_OUTPUT.PUT_LINE('Eligible for free delivery');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Delivery charges apply');
+    END IF;
+END;
+/
+```
+
+Output:
+
+```
+Eligible for free delivery
+```
+
+3. LOOP Example: Print Numbers 1 to 5
+
+The following PL/SQL block uses a simple LOOP and EXIT WHEN condition.
+
+```sql
+DECLARE
+    v_counter NUMBER := 1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(v_counter);
+        v_counter := v_counter + 1;
+
+        EXIT WHEN v_counter > 5;
+    END LOOP;
+END;
+/
+```
+
+Output:
+
+```
+1
+2
+3
+4
+5
+```
+
+4. Cursor Example
+
+The following PL/SQL block declares a cursor to fetch product names from the PRODUCTS table and print them.
+
+```sql
+DECLARE
+    CURSOR product_cursor IS
+        SELECT PRODUCT_NAME
+        FROM PRODUCTS;
+
+    v_product_name PRODUCTS.PRODUCT_NAME%TYPE;
+BEGIN
+    OPEN product_cursor;
+
+    LOOP
+        FETCH product_cursor INTO v_product_name;
+        EXIT WHEN product_cursor%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(v_product_name);
+    END LOOP;
+
+    CLOSE product_cursor;
+END;
+/
+```
+
+Sample Output:
+
+```
+Laptop
+Mouse
+Keyboard
+Monitor
+Printer
+```
+
+5. Exception Handling: Division by Zero
+
+The following PL/SQL block performs division and handles the division-by-zero exception.
+
+```sql
+DECLARE
+    v_num1 NUMBER := 100;
+    v_num2 NUMBER := 0;
+    v_result NUMBER;
+BEGIN
+    v_result := v_num1 / v_num2;
+
+    DBMS_OUTPUT.PUT_LINE('Result: ' || v_result);
+
+EXCEPTION
+    WHEN ZERO_DIVIDE THEN
+        DBMS_OUTPUT.PUT_LINE('Cannot divide by zero');
+END;
+/
+```
+
+Output:
+
+```
+Cannot divide by zero
+```
+
+Conclusion
+
+This assignment demonstrates fundamental PL/SQL concepts including variable declaration, conditional statements (IF-ELSE), loops, cursors, and exception handling. These features help developers write powerful database programs that can process data efficiently and handle runtime errors gracefully.
+
+
+session 9 :
+
+
+SQL Transactions, Savepoints, and Triggers Assignment
+
+1. Insert a New Order and Use COMMIT
+
+The following script inserts a new order into the Orders table and commits the transaction.
+
+```sql
+-- Start Transaction
+START TRANSACTION;
+
+INSERT INTO Orders
+(order_id, user_id, order_total)
+VALUES
+(101, 1, 850);
+
+COMMIT;
+
+-- Verify Data
+SELECT * FROM Orders
+WHERE order_id = 101;
+```
+
+Verification Steps:
+
+1. Execute the script.
+2. Disconnect from the database.
+3. Reconnect to the database.
+4. Run the SELECT query again.
+
+Expected Result:
+
+```text
+order_id | user_id | order_total
+--------------------------------
+101      | 1       | 850
+```
+
+Since COMMIT was executed, the record remains permanently saved.
+
+---
+
+2. Zomato-Style Food Order Process Using ROLLBACK
+
+The following script inserts two food items and then rolls back the transaction.
+
+```sql
+START TRANSACTION;
+
+INSERT INTO OrderItems
+(item_id, order_id, item_name, quantity)
+VALUES
+(1, 101, 'Pizza', 1);
+
+INSERT INTO OrderItems
+(item_id, order_id, item_name, quantity)
+VALUES
+(2, 101, 'Burger', 2);
+
+-- Undo Changes
+ROLLBACK;
+
+-- Verify
+SELECT * FROM OrderItems
+WHERE order_id = 101;
+```
+
+Expected Result:
+
+```text
+Empty Set
+```
+
+The inserted rows are removed because the transaction was rolled back before committing.
+
+---
+
+3. Flipkart Shopping Cart Using SAVEPOINT
+
+Create Sample Table:
+
+```sql
+CREATE TABLE Cart (
+    cart_id INT,
+    product_name VARCHAR(100)
+);
+```
+
+Transaction Example:
+
+```sql
+START TRANSACTION;
+
+INSERT INTO Cart
+VALUES (1, 'Laptop');
+
+SAVEPOINT ProductAdded;
+
+INSERT INTO Cart
+VALUES (2, 'Mouse');
+
+ROLLBACK TO ProductAdded;
+
+COMMIT;
+
+SELECT * FROM Cart;
+```
+
+Expected Output:
+
+```text
+cart_id | product_name
+----------------------
+1       | Laptop
+```
+
+Explanation:
+
+* Laptop is saved.
+* Mouse is added after SAVEPOINT.
+* ROLLBACK TO SAVEPOINT removes Mouse only.
+* COMMIT saves the remaining data.
+
+---
+
+4. Trigger to Automatically Deduct Wallet Balance
+
+Create Tables:
+
+```sql
+CREATE TABLE Wallet (
+    user_id INT PRIMARY KEY,
+    balance DECIMAL(10,2)
+);
+
+CREATE TABLE Transactions (
+    transaction_id INT PRIMARY KEY,
+    user_id INT,
+    amount DECIMAL(10,2)
+);
+```
+
+Create Trigger:
+
+```sql
+DELIMITER //
+
+CREATE TRIGGER wallet_deduction
+AFTER INSERT ON Transactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET balance = balance - NEW.amount
+    WHERE user_id = NEW.user_id;
+END//
+
+DELIMITER ;
+```
+
+Test Data:
+
+```sql
+INSERT INTO Wallet
+VALUES (1, 5000);
+
+INSERT INTO Transactions
+VALUES (101, 1, 1200);
+
+SELECT * FROM Wallet;
+```
+
+Expected Output:
+
+```text
+user_id | balance
+-----------------
+1       | 3800
+```
+
+The trigger automatically deducts the payment amount from the wallet balance.
+
+---
+
+5. Buggy Trigger Example and Corrected Version
+
+Buggy Trigger:
+
+```sql
+DELIMITER //
+
+CREATE TRIGGER wrong_wallet_update
+AFTER INSERT ON Transactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET balance = balance + NEW.amount
+    WHERE user_id = NEW.user_id;
+END//
+
+DELIMITER ;
+```
+
+Problem:
+
+Suppose the wallet balance is ₹5000.
+
+```sql
+INSERT INTO Transactions
+VALUES (102, 1, 1000);
+```
+
+Expected Balance:
+
+```text
+5000 - 1000 = 4000
+```
+
+Actual Balance Using Buggy Trigger:
+
+```text
+5000 + 1000 = 6000
+```
+
+The trigger incorrectly increases the balance instead of reducing it.
+
+Corrected Trigger:
+
+```sql
+DROP TRIGGER wrong_wallet_update;
+
+DELIMITER //
+
+CREATE TRIGGER correct_wallet_update
+AFTER INSERT ON Transactions
+FOR EACH ROW
+BEGIN
+    UPDATE Wallet
+    SET balance = balance - NEW.amount
+    WHERE user_id = NEW.user_id;
+END//
+
+DELIMITER ;
+```
+
+Why the Fix Works:
+
+The buggy trigger used the '+' operator, which added the expense amount to the wallet balance. The corrected trigger uses the '-' operator so that each transaction properly deducts the expense from the user's wallet balance, matching real-world payment systems such as Paytm, PhonePe, and Google Pay.
+
+---
+
+Conclusion
+
+This assignment demonstrates transaction control commands (COMMIT, ROLLBACK, SAVEPOINT), trigger creation, and debugging trigger logic. These concepts are essential for maintaining data integrity and implementing real-world business processes in database systems.
+
+	
+
+
