@@ -362,6 +362,633 @@ Bhargav Patel has 1500 followers
 ```
 
 
+# JavaScript DOM Manipulation Practice Note
+
+## 1. Set innerHTML using getElementById
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+
+<div id="greeting"></div>
+
+<script>
+    document.getElementById("greeting").innerHTML = "Welcome to the IPL Fan Zone!";
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 2. Hello Playlist using getElementById
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+</head>
+<body>
+
+<div id="greeting"></div>
+
+<script>
+    document.getElementById("greeting").innerHTML = "Hello, welcome to your playlist!";
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 3. Add Song to Playlist
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist Builder</title>
+</head>
+<body>
+
+<input type="text" placeholder="Enter song name">
+<button>Add Song</button>
+
+<ul id="playlist"></ul>
+
+<script>
+
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+const playlist = document.querySelector("#playlist");
+
+button.addEventListener("click", function () {
+
+    const li = document.createElement("li");
+    li.innerHTML = input.value;
+
+    playlist.appendChild(li);
+
+    input.value = "";
+
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 4. Add Friend to List
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friend List</title>
+</head>
+<body>
+
+<input type="text" placeholder="Enter friend name">
+<button>Add Friend</button>
+
+<ul id="friend-list"></ul>
+
+<script>
+
+const input = document.querySelector("input");
+const button = document.querySelector("button");
+const friendList = document.querySelector("#friend-list");
+
+button.addEventListener("click", function () {
+
+    const li = document.createElement("li");
+    li.innerHTML = input.value;
+
+    friendList.appendChild(li);
+
+    input.value = "";
+
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 5. Change Offer Text and Color
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offer</title>
+</head>
+<body>
+
+<h2 id="offer">Today's Offer</h2>
+
+<script>
+
+const offer = document.getElementById("offer");
+
+offer.innerHTML = "Flat 50% Off on Zomato Today!";
+offer.style.color = "red";
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 6. Dark Mode Toggle
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dark Mode</title>
+</head>
+<body id="page">
+
+<button id="modeBtn">Dark Mode</button>
+
+<script>
+
+const btn = document.getElementById("modeBtn");
+
+let dark = false;
+
+btn.addEventListener("click", function () {
+
+    if (!dark) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        btn.innerHTML = "Light Mode";
+    } else {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        btn.innerHTML = "Dark Mode";
+    }
+
+    dark = !dark;
+
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 7. Change Background Color While Typing
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mood Box</title>
+</head>
+<body>
+
+<input type="text" placeholder="Enter color">
+
+<div id="moodbox"
+style="width:200px;height:100px;border:1px solid black;margin-top:10px;">
+</div>
+
+<script>
+
+const input = document.querySelector("input");
+const box = document.getElementById("moodbox");
+
+input.addEventListener("input", function () {
+
+    box.style.backgroundColor = input.value;
+
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 8. Spotify Now Playing
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Now Playing</title>
+</head>
+<body>
+
+<h2>
+Now Playing:
+<span id="song-title">Believer</span>
+</h2>
+
+<button>Change Song</button>
+
+<script>
+
+const songs = [
+    "Believer",
+    "Perfect",
+    "Shape of You",
+    "Kesariya"
+];
+
+let index = 0;
+
+const title = document.getElementById("song-title");
+const button = document.querySelector("button");
+
+button.addEventListener("click", function () {
+
+    index++;
+
+    if (index >= songs.length) {
+        index = 0;
+    }
+
+    title.innerHTML = songs[index];
+
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+
+# JavaScript Arrays & Objects Practice Note
+
+## 1. Create an Array of Playlist Objects
+
+```javascript
+const playlists = [
+    {
+        name: "Workout Mix",
+        creator: "Bhargav",
+        numberOfSongs: 25
+    },
+    {
+        name: "Chill Vibes",
+        creator: "Rahul",
+        numberOfSongs: 18
+    },
+    {
+        name: "Road Trip",
+        creator: "Priya",
+        numberOfSongs: 30
+    }
+];
+
+console.log(playlists);
+```
+
+---
+
+## 2. Playlist with Genre
+
+```javascript
+const playlists = [
+    {
+        name: "Workout Mix",
+        numberOfSongs: 25,
+        genre: "Pop"
+    },
+    {
+        name: "Romantic Hits",
+        numberOfSongs: 20,
+        genre: "Romantic"
+    },
+    {
+        name: "Travel Songs",
+        numberOfSongs: 30,
+        genre: "Rock"
+    }
+];
+
+console.log(playlists);
+```
+
+---
+
+## 3. Add Playlist using push()
+
+```javascript
+const playlists = [
+    {
+        name: "Workout Mix",
+        creator: "Bhargav",
+        numberOfSongs: 25
+    },
+    {
+        name: "Chill Vibes",
+        creator: "Rahul",
+        numberOfSongs: 18
+    }
+];
+
+playlists.push({
+    name: "Party Night",
+    creator: "Amit",
+    numberOfSongs: 40
+});
+
+console.log(playlists);
+```
+
+---
+
+## 4. push() and pop()
+
+```javascript
+const playlists = [
+    {
+        name: "Workout Mix",
+        creator: "Bhargav",
+        numberOfSongs: 25
+    }
+];
+
+playlists.push({
+    name: "Rock Collection",
+    creator: "Bhargav",
+    numberOfSongs: 35,
+    genre: "Rock"
+});
+
+console.log("After Push:");
+console.log(playlists);
+
+playlists.pop();
+
+console.log("After Pop:");
+console.log(playlists);
+```
+
+---
+
+## 5. Remove Last Playlist
+
+```javascript
+const playlists = [
+    {
+        name: "Workout Mix",
+        creator: "Bhargav",
+        numberOfSongs: 25
+    },
+    {
+        name: "Chill Vibes",
+        creator: "Rahul",
+        numberOfSongs: 18
+    }
+];
+
+const removedPlaylist = playlists.pop();
+
+console.log("Removed Playlist:");
+console.log(removedPlaylist);
+
+console.log("Updated Array:");
+console.log(playlists);
+```
+
+---
+
+## 6. Flipkart Cart Example
+
+```javascript
+const cart = [
+    {
+        productName: "Laptop",
+        price: 50000,
+        quantity: 1
+    },
+    {
+        productName: "Mouse",
+        price: 700,
+        quantity: 2
+    },
+    {
+        productName: "Keyboard",
+        price: 1200,
+        quantity: 1
+    },
+    {
+        productName: "Headphones",
+        price: 2500,
+        quantity: 1
+    }
+];
+
+for (let product of cart) {
+
+    console.log(
+        product.productName +
+        " Total Price = ₹" +
+        (product.price * product.quantity)
+    );
+
+}
+```
+
+---
+
+## 7. splice() Example
+
+```javascript
+const playlists = [
+    {
+        name: "Workout"
+    },
+    {
+        name: "Travel"
+    },
+    {
+        name: "Romantic"
+    }
+];
+
+playlists.splice(
+    1,
+    1,
+    {
+        name: "Party Mix",
+        creator: "Bhargav",
+        numberOfSongs: 40
+    }
+);
+
+console.log(playlists);
+```
+
+---
+
+## 8. Nested Object Example
+
+```javascript
+const movies = [
+    {
+        title: "KGF",
+        year: 2018,
+        rating: {
+            imdb: 8.4,
+            rottenTomatoes: "89%"
+        }
+    },
+    {
+        title: "Pushpa",
+        year: 2021,
+        rating: {
+            imdb: 7.8,
+            rottenTomatoes: "82%"
+        }
+    }
+];
+
+for (let movie of movies) {
+
+    console.log(
+        movie.title +
+        " IMDb Rating: " +
+        movie.rating.imdb
+    );
+
+}
+```
+
+---
+
+## 9. Orders with Nested Arrays
+
+```javascript
+const orders = [
+    {
+        orderId: 101,
+        items: [
+            {
+                itemName: "Pizza",
+                price: 300
+            },
+            {
+                itemName: "Burger",
+                price: 150
+            }
+        ],
+        delivery: {
+            address: "Vadodara",
+            status: "Delivered"
+        }
+    },
+    {
+        orderId: 102,
+        items: [
+            {
+                itemName: "Pasta",
+                price: 250
+            },
+            {
+                itemName: "Cold Drink",
+                price: 80
+            }
+        ],
+        delivery: {
+            address: "Ahmedabad",
+            status: "Pending"
+        }
+    }
+];
+
+for (let order of orders) {
+
+    let total = 0;
+
+    for (let item of order.items) {
+        total += item.price;
+    }
+
+    console.log(
+        "Order ID:",
+        order.orderId,
+        "Total Price: ₹" + total
+    );
+
+}
+```
+
+---
+
+## 10. Favorite Apps using splice()
+
+```javascript
+const favApps = [
+    {
+        title: "Instagram",
+        url: "instagram.com"
+    },
+    {
+        title: "Spotify",
+        url: "spotify.com"
+    },
+    {
+        title: "Flipkart",
+        url: "flipkart.com"
+    },
+    {
+        title: "YouTube",
+        url: "youtube.com"
+    },
+    {
+        title: "WhatsApp",
+        url: "whatsapp.com"
+    }
+];
+
+favApps.splice(
+    2,
+    1,
+    {
+        title: "ChatGPT",
+        url: "chatgpt.com"
+    }
+);
+
+console.log(favApps);
+```
+
+
+
+
+
+
+
+
 
 
 
