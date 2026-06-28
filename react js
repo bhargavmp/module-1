@@ -1,0 +1,367 @@
+
+
+## 1. Create welcome.html
+
+Create an HTML file named `welcome.html`, add a `<script>` tag, and display an alert with the message:
+
+`Welcome to your Playlist Builder!`
+
+when the page loads.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+
+<h1>Playlist Builder</h1>
+
+<script>
+    alert("Welcome to your Playlist Builder!");
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 2. Create insta-bio.html
+
+Create an HTML file named `insta-bio.html`, add a `<script>` tag, and display an alert with the message:
+
+`Welcome to your Insta Bio-Link Page!`
+
+when the page loads.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insta Bio</title>
+</head>
+<body>
+
+<h1>Insta Bio-Link Page</h1>
+
+<script>
+    alert("Welcome to your Insta Bio-Link Page!");
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 3. Chrome DevTools Console
+
+Open any website (Instagram, Flipkart, Zomato, etc.).
+
+Press **F12** or **Ctrl + Shift + I** and open the **Console** tab.
+
+Type:
+
+```javascript
+console.log("Hello from the console!");
+```
+
+or
+
+```javascript
+console.log("JS is running!");
+```
+
+---
+
+## 4. Show Bio Button
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Bio</title>
+</head>
+<body>
+
+<button onclick="showBio()">Show Bio</button>
+
+<script>
+
+function showBio() {
+    alert("Name: Bhargav Patel\nFavorite App: Instagram");
+}
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 5. Show Greeting using addEventListener()
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+
+<button>Show Greeting</button>
+
+<script>
+
+const btn = document.querySelector("button");
+
+btn.addEventListener("click", function () {
+    alert("Hello from JS!");
+});
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 6. Change Heading Color
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Apps</title>
+</head>
+<body>
+
+<h2>Top 3 Food Apps</h2>
+
+<script>
+
+const heading = document.querySelector("h2");
+
+heading.style.color = "green";
+
+</script>
+
+</body>
+</html>
+```
+
+---
+
+## 7. Update Alert Message
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insta Bio</title>
+</head>
+<body>
+
+<h1>Welcome</h1>
+
+<script>
+
+alert("Welcome Bhargav Patel to your Insta Bio-Link Page!");
+
+</script>
+
+</body>
+</html>
+``
+
+
+# JavaScript Variables & Data Types Practice Note
+
+## 1. Instagram Profile using let
+
+```javascript
+let userName = "Bhargav Patel";
+let followers = 1500;
+let isVerified = false;
+
+console.log(userName);
+console.log(followers);
+console.log(isVerified);
+```
+
+---
+
+## 2. Favorite Food Delivery App using var
+
+```javascript
+var appName = "Zomato";
+console.log(appName);
+
+appName = "Swiggy";
+console.log(appName);
+
+// Redeclaration is also allowed with var
+var appName = "Uber Eats";
+console.log(appName);
+```
+
+---
+
+## 3. Constant Variable using const
+
+```javascript
+const MAX_POSTS = 100;
+
+console.log(MAX_POSTS);
+
+// This will cause an error
+MAX_POSTS = 200;
+
+// Error:
+// TypeError: Assignment to constant variable.
+```
+
+---
+
+## 4. const Array Example
+
+```javascript
+const favoriteSongs = [
+    "Kesariya",
+    "Perfect",
+    "Believer"
+];
+
+favoriteSongs.push("Shape of You");
+
+console.log(favoriteSongs);
+
+// const prevents reassignment of the variable,
+// but the contents of the array can still be modified.
+```
+
+---
+
+## 5. JavaScript Object
+
+```javascript
+const spotifyProfile = {
+    userName: "Bhargav",
+    playlists: ["Workout", "Travel", "Romantic"],
+    isPremium: true
+};
+
+console.log(spotifyProfile);
+
+console.log(spotifyProfile.playlists);
+```
+
+---
+
+## 6. Primitive vs Reference Types
+
+```javascript
+let user1 = "Priya";
+let user2 = user1;
+
+user1 = "Riya";
+
+console.log(user1);
+console.log(user2);
+
+let favApps1 = ["Instagram", "Spotify"];
+let favApps2 = favApps1;
+
+favApps1.push("Zomato");
+
+console.log(favApps1);
+console.log(favApps2);
+
+// Primitive values create a copy.
+// Arrays are reference types, so both variables
+// refer to the same array.
+```
+
+---
+
+## 7. Primitive vs Object
+
+```javascript
+let favFood = "Pizza";
+let favFoodCopy = favFood;
+
+favFood = "Burger";
+
+console.log(favFood);
+console.log(favFoodCopy);
+
+let zomatoUser = {
+    city: "Vadodara"
+};
+
+let anotherUser = zomatoUser;
+
+anotherUser.city = "Ahmedabad";
+
+console.log(zomatoUser);
+console.log(anotherUser);
+
+// Primitive values are copied.
+// Objects are stored by reference.
+```
+
+---
+
+## 8. Dynamic Typing
+
+```javascript
+function showProfile(name, followers, isPremium) {
+
+    console.log(typeof followers);
+
+    followers = "One Thousand";
+    console.log(typeof followers);
+
+    followers = 1000;
+    console.log(typeof followers);
+}
+
+showProfile("Bhargav", 1000, true);
+```
+
+Output:
+
+```
+number
+string
+number
+```
+
+---
+
+## 9. Function with Parameters
+
+```javascript
+function displayProfile(userName, followers) {
+
+    console.log(`${userName} has ${followers} followers`);
+
+}
+
+displayProfile("Bhargav Patel", 1500);
+```
+
+Output:
+
+```
+Bhargav Patel has 1500 followers
+```
+
+
+
+
+
