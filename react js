@@ -983,6 +983,607 @@ console.log(favApps);
 ```
 
 
+1. Create a React App and Display JSX Heading
+Step 1: Create React App
+npx create-react-app jsx-demo
+Step 2: Move into project
+cd jsx-demo
+Step 3: Start the project
+npm start
+App.js
+function App() {
+  return (
+    <div>
+      <h1>Welcome to React JSX!</h1>
+    </div>
+  );
+}
+
+export default App;
+2. Functional Component (UserGreeting)
+UserGreeting.js
+function UserGreeting(props) {
+  return (
+    <div>
+      <h2>Hello, {props.username}!</h2>
+    </div>
+  );
+}
+
+export default UserGreeting;
+App.js
+import UserGreeting from "./UserGreeting";
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to React JSX!</h1>
+
+      <UserGreeting username="Bhargav" />
+    </div>
+  );
+}
+
+export default App;
+Output
+Welcome to React JSX!
+
+Hello, Bhargav!
+3. Class Component (UserGreetingClass)
+UserGreetingClass.js
+import React, { Component } from "react";
+
+class UserGreetingClass extends Component {
+  render() {
+    return (
+      <div>
+        <h2>Hello, {this.props.username}!</h2>
+      </div>
+    );
+  }
+}
+
+export default UserGreetingClass;
+App.js
+import UserGreeting from "./UserGreeting";
+import UserGreetingClass from "./UserGreetingClass";
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to React JSX!</h1>
+
+      <UserGreeting username="Bhargav" />
+
+      <UserGreetingClass username="Bhargav" />
+    </div>
+  );
+}
+
+export default App;
+Output
+Welcome to React JSX!
+
+Hello, Bhargav!
+
+Hello, Bhargav!
+4. MiniProfile Functional Component
+MiniProfile.js
+function MiniProfile() {
+  return (
+    <div
+      style={{
+        width: "250px",
+        border: "1px solid gray",
+        borderRadius: "10px",
+        padding: "20px",
+        textAlign: "center",
+      }}
+    >
+      <img
+        src="https://i.pravatar.cc/150?img=12"
+        alt="Profile"
+        width="120"
+        height="120"
+        style={{ borderRadius: "50%" }}
+      />
+
+      <h2>Bhargav Patel</h2>
+
+      <p>💻 Full Stack Developer | MERN Stack Learner</p>
+    </div>
+  );
+}
+
+export default MiniProfile;
+App.js
+import MiniProfile from "./MiniProfile";
+
+function App() {
+  return (
+    <div>
+      <MiniProfile />
+    </div>
+  );
+}
+
+export default App;
+Output
+      ○ Profile Image
+
+      Bhargav Patel
+
+💻 Full Stack Developer | MERN Stack Learner
+5. Refactored MiniProfile (Proper JSX)
+function MiniProfile() {
+  return (
+    <>
+      <div
+        style={{
+          width: "250px",
+          border: "1px solid gray",
+          borderRadius: "10px",
+          padding: "20px",
+          textAlign: "center",
+          margin: "20px auto",
+        }}
+      >
+        <img
+          src="https://i.pravatar.cc/150?img=12"
+          alt="Profile"
+          width="120"
+          height="120"
+          style={{ borderRadius: "50%" }}
+        />
+
+        <h2>Bhargav Patel</h2>
+
+        <p>💻 Full Stack Developer</p>
+
+        <p>MERN Stack Learner</p>
+      </div>
+    </>
+  );
+}
+
+export default MiniProfile;
+
+
+
+session 2:
+
+
+import React from "react";
+import PropTypes from "prop-types";
+
+// ===============================
+// ProductCard Functional Component
+// ===============================
+function ProductCard(props) {
+  return (
+    <div
+      style={{
+        border: "1px solid gray",
+        padding: "15px",
+        margin: "20px",
+        width: "250px",
+        borderRadius: "10px",
+        textAlign: "center",
+        boxShadow: "0px 0px 8px gray",
+      }}
+    >
+      <h2>{props.productName}</h2>
+
+      <h3>₹ {props.price}</h3>
+    </div>
+  );
+}
+
+// Prop Validation
+ProductCard.propTypes = {
+  productName: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
+
+// ===============================
+// UserProfile Functional Component
+// ===============================
+function UserProfile(props) {
+  return (
+    <div
+      style={{
+        border: "1px solid gray",
+        width: "300px",
+        padding: "20px",
+        margin: "20px",
+        borderRadius: "10px",
+        textAlign: "center",
+        boxShadow: "0px 0px 10px gray",
+      }}
+    >
+      <img
+        src={props.profilePic}
+        alt="Profile"
+        width="120"
+        height="120"
+        style={{ borderRadius: "50%" }}
+      />
+
+      <h2>{props.username}</h2>
+
+      <p>Followers : {props.followers}</p>
+    </div>
+  );
+}
+
+// Default Props
+UserProfile.defaultProps = {
+  followers: 0,
+  profilePic: "https://i.pravatar.cc/150?img=10",
+};
+
+// ===============================
+// Main App Component
+// ===============================
+function App() {
+  return (
+    <div style={{ textAlign: "center" }}>
+      <h1>React Props Assignment</h1>
+
+      <hr />
+
+      <h2>Task 1 - Product Card</h2>
+
+      <ProductCard productName="Laptop" price={65000} />
+
+      <ProductCard productName="Mobile" price={25000} />
+
+      <hr />
+
+      <h2>Task 2 - User Profile</h2>
+
+      <UserProfile
+        username="Bhargav Patel"
+        followers={1200}
+        profilePic="https://i.pravatar.cc/150?img=12"
+      />
+
+      <hr />
+
+      <h2>Task 3 - Default Props</h2>
+
+      <UserProfile username="Rahul" />
+    </div>
+  );
+}
+
+export default App;
+Output
+React Props Assignment
+
+------------------------------------
+
+Task 1
+
+Laptop
+₹65000
+
+Mobile
+₹25000
+
+------------------------------------
+
+Task 2
+
+(Profile Image)
+
+Bhargav Patel
+
+Followers : 1200
+
+------------------------------------
+
+Task 3
+
+(Default Image)
+
+Rahul
+
+Followers : 0
+Theory Notes
+1. What are Props?
+
+Props (Properties) are used to pass data from a parent component to a child component.
+
+Example:
+
+<ProductCard productName="Laptop" price={65000} />
+
+Access props:
+
+props.productName
+props.price
+2. Functional Component
+
+A functional component is a JavaScript function that returns JSX.
+
+Example:
+
+function ProductCard(props) {
+  return <h1>{props.productName}</h1>;
+}
+3. Default Props
+
+Default props provide fallback values when a prop is not passed.
+
+Example:
+
+UserProfile.defaultProps = {
+  followers: 0,
+  profilePic: "https://i.pravatar.cc/150?img=10",
+};
+
+If you render:
+
+<UserProfile username="Rahul" />
+
+Output:
+
+Rahul
+
+Followers : 0
+
+(Default Image)
+4. PropTypes
+
+PropTypes validates the type of props during development.
+
+Install:
+
+npm install prop-types
+
+Import:
+
+import PropTypes from "prop-types";
+
+Validation:
+
+ProductCard.propTypes = {
+  productName: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
+
+
+session 3:
+
+
+1. TrendingSongs Component
+Objective:
+
+Log "Component mounted" in the console when the component first renders.
+
+import React, { useEffect } from "react";
+
+function TrendingSongs() {
+
+  useEffect(() => {
+    console.log("Component mounted");
+  }, []);
+
+  return (
+    <div>
+      <h2>Trending Songs</h2>
+    </div>
+  );
+}
+
+export default TrendingSongs;
+Output
+Trending Songs
+
+Console:
+
+Component mounted
+2. IPLScoreFetcher Component
+Objective:
+
+Fetch data from:
+
+https://jsonplaceholder.typicode.com/posts
+
+Display the title of the first post as the match headline.
+
+import React, { useEffect, useState } from "react";
+
+function IPLScoreFetcher() {
+
+  const [headline, setHeadline] = useState("");
+
+  useEffect(() => {
+
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((data) => {
+        setHeadline(data[0].title);
+      });
+
+  }, []);
+
+  return (
+    <div>
+
+      <h2>IPL Match Headline</h2>
+
+      <h3>{headline}</h3>
+
+    </div>
+  );
+}
+
+export default IPLScoreFetcher;
+Output
+IPL Match Headline
+
+sunt aut facere repellat provident occaecati...
+3. MovieSuggestions Component
+Objective
+Fetch data
+Show loading message
+Display names
+import React, { useEffect, useState } from "react";
+
+function MovieSuggestions() {
+
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+
+        setMovies(data);
+
+        setLoading(false);
+
+      });
+
+  }, []);
+
+  if (loading) {
+
+    return <h2>Loading...</h2>;
+
+  }
+
+  return (
+
+    <div>
+
+      <h2>Movie Suggestions</h2>
+
+      <ul>
+
+        {movies.map((movie) => (
+
+          <li key={movie.id}>
+
+            {movie.name}
+
+          </li>
+
+        ))}
+
+      </ul>
+
+    </div>
+
+  );
+
+}
+
+export default MovieSuggestions;
+Output
+Movie Suggestions
+
+Leanne Graham
+
+Ervin Howell
+
+Clementine Bauch
+
+...
+4. Refactor Button Fetch to useEffect
+Before (Button Click)
+import React, { useState } from "react";
+
+function Users() {
+
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = () => {
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+
+        setUsers(data);
+
+      });
+
+  };
+
+  return (
+
+    <div>
+
+      <button onClick={fetchUsers}>
+        Load Users
+      </button>
+
+      <ul>
+
+        {users.map((user) => (
+
+          <li key={user.id}>{user.name}</li>
+
+        ))}
+
+      </ul>
+
+    </div>
+
+  );
+
+}
+
+export default Users;
+After (useEffect)
+import React, { useState, useEffect } from "react";
+
+function Users() {
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => {
+
+        setUsers(data);
+
+      });
+
+  }, []);
+
+  return (
+
+    <div>
+
+      <button>
+        Load Users
+      </button>
+
+      <ul>
+
+        {users.map((user) => (
+
+          <li key={user.id}>{user.name}</li>
+
+        ))}
+
+      </ul>
+
+    </div>
+
+  );
+
+}
+
+export default Users;
+
 
 
 
